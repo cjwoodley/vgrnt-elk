@@ -1,2 +1,7 @@
-# vgrnt-elk
-Elk Stack 
+# Elk Stack Vagrant Provisioned 
+## System Reqirments
+- Vagrant
+- Virtual Box
+- Git 
+
+# Provisioning

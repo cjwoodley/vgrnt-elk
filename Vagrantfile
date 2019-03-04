@@ -5,6 +5,12 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+
+#esFile = "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.6.1.tar.gz"
+#lsFile = "https://artifacts.elastic.co/downloads/logstash/logstash-6.6.1.tar.gz"
+#kbFile = "https://artifacts.elastic.co/downloads/kibana/kibana-6.6.1-linux-x86_64.tar.gz"
+
+
 Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at

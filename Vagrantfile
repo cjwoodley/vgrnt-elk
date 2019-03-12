@@ -28,23 +28,23 @@ Vagrant.configure(2) do |config|
   elk.vm.network :forwarded_port, guest: 5601, host: 5601
   elk.vm.network :forwarded_port, guest: 9200, host: 9200
   elk.vm.network :forwarded_port, guest: 9300, host: 9300
-  elk.vm.box = "bento/centos-6.7"
+  elk.vm.box = "bento/centos-6.10"
     elk.vm.provision :file  do |file|
-      file.source = "./bins/logstash-2.4.0.tar.gz"
-      file.destination = "/tmp/logstash-2.4.0.tar.gz"
+      file.source = "./bins/logstash-6.6.1.tar.gz"
+      file.destination = "/tmp/logstash-6.6.1.tar.gz"
     end
     elk.vm.provision :file  do |file|
-      file.source = "./bins/kibana-4.6.1-linux-x86_64.tar.gz"
-      file.destination = "/tmp/kibana-4.6.1-linux-x86_64.tar.gz"
+      file.source = "./bins/kibana-6.6.1-linux-x86_64.tar.gz"
+      file.destination = "/tmp/kibana-6.6.1-linux-x86_64.tar.gz"
     end
     elk.vm.provision :file  do |file|
-      file.source = "./bins/elasticsearch-2.4.0.tar.gz"
-      file.destination = "/tmp/elasticsearch-2.4.0.tar.gz"
+      file.source = "./bins/elasticsearch-6.6.1.tar.gz"
+      file.destination = "/tmp/elasticsearch-6.6.1.tar.gz"
     end
-    elk.vm.provision :file  do |file|
-      file.source = "./bins/logstash-all-plugins-2.4.0.tar.gz"
-      file.destination = "/tmp/logstash-all-plugins-2.4.0.tar.gz "
-    end
+#    elk.vm.provision :file  do |file|
+#      file.source = "./bins/logstash-all-plugins-2.4.0.tar.gz"
+#      file.destination = "/tmp/logstash-all-plugins-2.4.0.tar.gz "
+#    end
     
     elk.vm.provision "shell", path: "provision/centos-6.sh"
   end
@@ -105,7 +105,13 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
     # change to 4096 if you're running hive
     vb.customize ["modifyvm", :id, "--memory", "3072"]
-  vb.customize ["modifyvm", :id, "--cpus", "2"]
+    vb.customize ["modifyvm", :id, "--cpus", "2"]
+  end
+  config.vm.provider "hyperv" do |hv|
+    # change to 4096 if you're running hive
+    hv.memory = "3072"
+    hv.cpus = "2"
+    hv.ip_address_timeout = 240
   end
 
     # use vagrant-cachier if available (common package cache)
